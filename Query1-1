@@ -1,0 +1,12 @@
+create table Customers (
+	Name nvarchar(255) not null ,
+	IdCard varchar(100) primary key check(IdCard not like '%[^0-9]%'),
+	Address nvarchar(255) not null
+);
+
+create table Subscriber (
+	PhoneNumber varchar(100) primary key check(PhoneNumber not like '%[^0-9]%'),
+	Types nvarchar(255) not null check(Types = 'Trả trước' or Types = 'Trả sau' or Types = 'Không trả'),
+	RegistrationDate date not null default GETDATE(),
+	IdCard varchar(100) not null foreign key references Customers(IdCard)
+);
