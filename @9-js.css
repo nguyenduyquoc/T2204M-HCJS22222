@@ -1,0 +1,52 @@
+img{
+    width: 100%;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html{
+    line-height: 1.5;
+    font-size: 18px;
+}
+.section{
+    float: left;
+    width: 100%;
+}
+.container {
+    float: none;
+    width: 1200px;
+    margin: 0 auto;
+}
+.box1 {
+    float: left;
+    margin-left: 60px;
+    margin-top: 40px;
+    padding-left: 20px;
+    width: 370px;
+    background-color: #e5d3d3;
+}
+.box2 {
+    float: left;
+    margin: 40px 20px 0;
+    width: calc(100% - 470px);
+}
+.box2 .row .col-4 {
+    border: 2px solid #d59696;
+}
+.box2 .row .col-content {
+    padding: 0 20px;
+    margin-bottom: 20px;
+}
+#name1 {
+    width: 60%;
+    height: 70px;
+    float: left;
+}
+#price1 {
+    width: 40%;
+    float: left;
+    text-align: right;
+    height: 120px;
+}

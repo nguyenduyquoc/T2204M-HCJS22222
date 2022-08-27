@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>mootj con vitj</title>
+    <link rel="stylesheet" href="library/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="@7-js.css">
+</head>
+<body>
+<section class="section">
+    <div class="container">
+        <div class="row" id="forecast">
+
+        </div>
+    </div>
+</section>
+<script type="text/javascript"src="library/jQuery/jquery.js"></script>
+<script type="text/javascript">
+    $.ajax({
+        url:"http://api.openweathermap.org/data/2.5/forecast",
+        data:{
+            q:"Hanoi",
+            appid:"09a71427c59d38d6a34f89b47d75975c",
+            units:"metric"
+        },
+        success:function (data) {
+            var list = data.list;
+            for(var i=0;i<list.length;i++){
+                var html_col = " <div class=\"col-3\">\n" +
+                    "                    <div class=\"col-content\">\n" +
+                    "                        <h3>"+list[i].dt_txt+"</h3>\n" +
+                    "                        <h2>"+list[i].main.temp+"<sup>o</sup>C</h2>\n" +
+                    "                        <p>"+list[i].weather[0].description+"</p>\n" +
+                    "                        <img src=\"http://openweathermap.org/img/wn/"+list[i].weather[0].icon+"@2x.png\"/>\n" +
+                    "                    </div>\n" +
+                    "                </div>";
+
+                $("#forecast").append(html_col);
+            }
+        }
+    });
+</script>
+</body>
+</html>

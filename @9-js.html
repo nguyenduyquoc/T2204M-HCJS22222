@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>demmo2</title>
+    <link rel="stylesheet" href="library/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="@9-js.css">
+</head>
+<body>
+    <div class="section">
+        <div class="box1">
+            <div class="child1">
+                <h2>Product Categories</h2>
+                <p>Vegetables(15)</p>
+                <p>Fresh Fruits(12)</p>
+                <p>Fresh Meat(12)</p>
+                <p>Milk and cream(9)</p>
+                <p>Uncategozired(7)</p>
+                <p>Organic Fruits(6)</p>
+                <p>Specail Salad(3)</p>
+                <p>Supplement(0)</p>
+                <p></p>
+            </div>
+            <div class="child2">
+                <h2>Product Bands</h2>
+                <p>Green life(24)</p>
+                <p>Organic life(22)</p>
+                <p>Whole foods(21)</p>
+                <p>Orwell Company(14)</p>
+                <p>Organica(6)</p>
+                <p>Orther(3)</p>
+                <p></p>
+                <p></p>
+            </div>
+        </div>
+        <div class="box2">
+            <div class="row" id="forecast">
+
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="container box3">
+            <div class="row two" id="forecast1">
+
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="library/jQuery/jquery.js"></script>
+    <script type="text/javascript">
+        $.ajax({
+            url:"https://foodgroup.herokuapp.com/api/today-special",
+            method:"get",
+            success:function (data) {
+                var data = data.data;
+                for (var i = 0; i < data.length; i++) {
+                    var html_col = "<div class=\"col-4\">\n" +
+                        "                    <div class=\"col-content\">\n" +
+                        "                        <img id='img1' src=\""+data[i].image+"\">\n" +
+                        "                        <p id=\"name1\">"+data[i].name+"</p>\n" +
+                        "                        <p id=\"price1\">"+data[i].price+ ' VND'+"</p>\n" +
+                        "                    </div>\n" +
+                        "                </div>"
+
+                    $("#forecast").append(html_col);
+                }
+            }
+        });
+
+        $.ajax({
+            url:"https://foodgroup.herokuapp.com/api/menu",
+            method:"get",
+            success:function (data) {
+                var data = data.data;
+                for (var i = 0 ; i < data.length; i++) {
+                    var html_col1 = "<div class=\"col-4\">\n" +
+                        "                    <div class=\"col-content\">\n" +
+                        "                        <p id=\"name2\">"+data[i].name+"</p>\n" +
+                        "                        <img id=\"img2\" src=\""+data[i].icon+"\">\n" +
+                        "                    </div>\n" +
+                        "                </div>"
+
+                    $("#forecast1").append(html_col1);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

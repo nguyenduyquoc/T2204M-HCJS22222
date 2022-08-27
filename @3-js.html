@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>@3</title>
+</head>
+<body>
+    <h1 id="tit">Một con vịt xòe ra
+
+    <h2>Thông tin thời tiết</h2>
+    <p id="city">Thành Phố Hồ Chí Minh</p>
+    <p id="temp">37<sup>o</sup>C</p>
+    <p id="hump">96%</p>
+    <p id="press">1003</p>
+    <p id="desc">light sunny</p>
+    <p id="icon"><img src="..." /></p>
+    <script type="text/javascript" src="library/jQuery/jquery.js"></script>
+    <script type="text/javascript">
+        var h = $("#tit");
+        h.css("color","green");
+        h.css("font-size","25px");
+        h.css({
+            "margin-top":"30px",
+            "padding-bottom":"30px",
+            "margin-bottom":"10px",
+            "border-bottom":"2px solid red"
+        });
+        h.text("Thông tin bóng đá Manchester United");
+
+        var ps = $(".para");//collection (array) cac object
+        ps.css("color","red");
+        ps.css("padding","10px");
+
+        var ps2 = $("div");
+        ps2.css("font-size","24px");
+
+        //Thời tiết
+        $.ajax({
+            url:"https://api.openweathermap.org/data/2.5/weather?q=Hanoi,vietnam&appid=09a71427c59d38d6a34f89b47d75975c&units=metric",
+            method:"get",
+            success: function (data) {
+                var ct = $("#city");
+                ct.text(data.name+", "+data.sys.country);
+                $("#temp").html(data.main.temp+"<sup>o</sup>C");
+                $("#hump").html('độ ẩm '+data.main.humidity+"%");
+                $("#press").text(data.main.pressure);
+                $("#desc").text(data.weather[0].description);
+                $("#icon").html("<img src='https://openweathermap.org/img/wn/"+
+                    data.weather[0].icon+"@2x.png' />");
+            }
+        })
+    </script>
+</body>
+</html>
